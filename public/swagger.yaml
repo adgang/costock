@@ -1,0 +1,775 @@
+openapi: 3.0.1
+info:
+  title: O2 Concentrator Stockpile
+  description: 'A stockpile service for O2 concentrators'
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: adgang@tuta.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://localhost:3200/
+- url: http://localhost:3200/
+tags:
+- name: donations
+  description: List and add donations
+- name: models
+  description: Operations to manage available concentrator models
+- name: devices
+  description: Operations to manage concentrators
+- name: orders
+  description: Operations to manage requests for concentrators
+paths:
+  /models:
+    get:
+      tags:
+      - models
+      summary: Lists all concentrator models in inventory
+      operationId: listModels
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Model'
+        400:
+          description: Invalid status value
+          content: {}
+    post:
+      tags:
+      - models
+      summary: Adding a concentrator model
+      operationId: addModel
+      requestBody:
+        description: Concentrator model that needs to be added to the inventory
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelDetails'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ModelDetails'
+        required: true
+      responses:
+        400:
+          description: Invalid ID supplied
+          content: {}
+        404:
+          description: Model not found
+          content: {}
+        405:
+          description: Validation exception
+          content: {}
+      x-codegen-request-body-name: body
+  /models/{modelId}:
+    get:
+      tags:
+      - models
+      summary: Finds model by id
+      description: Gets a model
+      operationId: getModel
+      parameters:
+      - name: modelId
+        in: path
+        schema:
+          type: string
+          format: uuid
+        description: ID of pet to return
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        400:
+          description: Invalid status value
+          content: {}
+    put:
+      tags:
+      - models
+      summary: Edits a concentrator model's details
+      description: Edits models details
+      operationId: editModel
+      parameters:
+      - name: modelId
+        in: path
+        description: modelId of the concentrator model to be edited
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Model to be added to the invetory
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ModelDetails'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        400:
+          description: Invalid tag value
+          content: {}
+  /donations:
+    post:
+      tags:
+      - donations
+      summary: Adds a donation
+      description: Returns a single pet
+      operationId: addDonation
+      requestBody:
+        description: Donation details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Donation'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Donation'
+        required: true
+      responses:
+        400:
+          description: Invalid ID supplied
+          content: {}
+        404:
+          description: Donation not found
+          content: {}
+        405:
+          description: Validation exception
+          content: {}
+      x-codegen-request-body-name: body
+  /devices:
+    get:
+      tags:
+      - devices
+      summary: Returns device inventories by status
+      description: Returns a list of devices
+      operationId: getDeviceInventory
+      parameters:
+      - name: location
+        in: query
+        description: location where nearby inventory(within 100km) is needed
+        schema:
+          type: string
+      - name: model
+        in: query
+        description: model id of model requested
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+    post:
+      tags:
+      - devices
+      summary: Add a new device to inventory
+      operationId: addDevice
+      requestBody:
+        description: device to be added to the invetory
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Device'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        400:
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body     
+  /devices/{deviceId}:
+    put:
+      tags:
+      - devices
+      summary: Edit details of a device in inventory
+      operationId: editDevice
+      parameters:
+      - name: deviceId
+        in: path
+        description: deviceId of the concentrator model to be edited
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: device to be added to the invetory
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Device'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Device'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+        400:
+          description: Invalid Device
+          content: {}
+      x-codegen-request-body-name: body    
+  /orders:
+    get:
+      tags:
+      - orders
+      summary: List all orders
+      operationId: listOrders
+      parameters:
+      - name: location
+        in: query
+        description: location around where nearby orders(within 100km) are needed
+        schema:
+          type: string
+      - name: model
+        in: query
+        description: model id of model requested
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        400:
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - orders
+      summary: Post a new order request
+      operationId: addOrder
+      requestBody:
+        description: request order placed for oxygen concentrator
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        400:
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body
+  /orders/{orderId}:
+    get:
+      tags:
+      - orders
+      summary: Get an order
+      operationId: getOrder
+      parameters:
+      - name: orderId
+        in: path
+        description: orderId of the request
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        400:
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body     
+    put:
+      tags:
+      - orders
+      summary: Edit an order
+      operationId: editOrder
+      parameters:
+      - name: orderId
+        in: path
+        description: orderId of the request
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: request order placed for oxygen concentrator
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        400:
+          description: Invalid Order
+          content: {}
+      x-codegen-request-body-name: body    
+    delete:
+      tags:
+      - orders
+      summary: Delete purchase order by ID
+      description: Deletes an order with the given ID
+      operationId: deleteOrder
+      parameters:
+      - name: orderId
+        in: path
+        description: ID of the order that needs to be deleted
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        400:
+          description: Invalid ID supplied
+          content: {}
+        404:
+          description: Order not found
+          content: {}
+  /user:
+    post:
+      tags:
+      - user
+      summary: Create user
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  /user/createWithArray:
+    post:
+      tags:
+      - user
+      summary: Creates list of users with given input array
+      operationId: createUsersWithArrayInput
+      requestBody:
+        description: List of user object
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  /user/createWithList:
+    post:
+      tags:
+      - user
+      summary: Creates list of users with given input array
+      operationId: createUsersWithListInput
+      requestBody:
+        description: List of user object
+        content:
+          '*/*':
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        default:
+          description: successful operation
+          content: {}
+      x-codegen-request-body-name: body
+  /user/login:
+    get:
+      tags:
+      - user
+      summary: Logs user into the system
+      operationId: loginUser
+      parameters:
+      - name: username
+        in: query
+        description: The user name for login
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        400:
+          description: Invalid username/password supplied
+          content: {}
+  /user/logout:
+    get:
+      tags:
+      - user
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        default:
+          description: successful operation
+          content: {}
+  /user/{username}:
+    get:
+      tags:
+      - user
+      summary: Get user by user name
+      operationId: getUserByName
+      parameters:
+      - name: username
+        in: path
+        description: 'The name that needs to be fetched. Use user1 for testing. '
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        400:
+          description: Invalid username supplied
+          content: {}
+        404:
+          description: User not found
+          content: {}
+    put:
+      tags:
+      - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+      - name: username
+        in: path
+        description: name that need to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Updated user object
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        400:
+          description: Invalid user supplied
+          content: {}
+        404:
+          description: User not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+      - name: username
+        in: path
+        description: The name that needs to be deleted
+        required: true
+        schema:
+          type: string
+      responses:
+        400:
+          description: Invalid username supplied
+          content: {}
+        404:
+          description: User not found
+          content: {}
+components:
+  schemas:
+    Model:
+      allOf:
+      - $ref: '#/components/schemas/ModelDetails'
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+    ModelDetails:
+      type: object
+      properties:
+        name:
+          type: string
+        make:
+          type: string
+        country_of_origin:
+          type: string
+        # created:
+        #   type: integer
+        #   format: int64
+        # modifier:
+        #   type: integer
+        #   format: int64
+        specs:
+          type: object
+          additionalProperties: true
+      xml:
+        name: Model
+    Device:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/DeviceDetails'
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+    DeviceDetails:
+      type: object
+      properties:
+        model_id:
+          type: string
+          format: uuid
+        model_name:
+          type: string
+        status:
+          type: string
+          enum:
+          - in_service
+          - under_maintenance
+          - available
+        location:
+          type: object
+          properties:
+            lat:
+              type: string
+            long:
+              type: string
+      xml:
+        name: Device
+    OrderRequest:
+      type: object
+      required:
+      - contact
+      - address
+      properties:
+        contact:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+      xml:
+        name: OrderRequest
+    Address:
+      type: object
+      required:
+      - line_1
+      - line_2
+      - area
+      - city
+      - district 
+      - state 
+      - pincode
+      properties:
+        line_1:
+          type: string
+        line_2:
+          type: string
+        area:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        state:
+          type: string
+        pincode:
+          type: string
+    Order:
+      allOf:
+      - $ref: '#/components/schemas/OrderRequest'
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          device_id:
+            type: string
+            format: uuid
+          device_model_name:
+            type: string
+          created_at:
+            type: integer
+            format: int64
+          scheduled_at:
+            type: integer
+            format: int64
+          delivered_at:
+            type: integer
+            format: int64
+          return_scheduled_at:
+            type: integer
+            format: int64
+          completed_at:
+            type: integer
+            format: int64
+          cancelled_at:
+            type: integer
+            format: int64
+          status: 
+            type: string
+            enum: 
+            - waitlisted
+            - scheduled
+            - dispatched
+            - delivered
+            - return_scheduled
+            - return_dispatched
+            - completed
+            - cancelled
+    Donation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        tax_id:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+      xml:
+        name: Donation
+    User:
+      allOf:
+      - $ref: '#/components/schemas/UserDetails'
+      - type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+    UserDetails:
+      type: object
+      properties:
+        name:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+  # securitySchemes:
+  #   petstore_auth:
+  #     type: oauth2
+  #     flows:
+  #       implicit:
+  #         authorizationUrl: http://petstore.swagger.io/oauth/dialog
+  #         scopes:
+  #           write:pets: modify pets in your account
+  #           read:pets: read your pets
+  #   api_key:
+  #     type: apiKey
+  #     name: api_key
+  #     in: header
