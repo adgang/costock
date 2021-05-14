@@ -16,7 +16,7 @@ function App() {
           </h1>
         </div>
       </header>
-      <section>
+      <section className="App-centered-panel">
         <Router>
           <Link to="/donation"><Button>I want to donate</Button></Link>
           <Link to="/requests"><Button>I want to request a concentrator</Button></Link>

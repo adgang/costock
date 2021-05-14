@@ -41,3 +41,10 @@
     transform: rotate(360deg);
   }
 }
+
+.App-centered-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 10px;
+}
