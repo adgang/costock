@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css';
+import { Button } from 'antd';
+
 
 function App() {
   return (
@@ -11,6 +14,7 @@ function App() {
         </div>
       </header>
       <section>
+      <Button type="primary">Button</Button>
 
       </section>
       <footer></footer>
