@@ -10,5 +10,11 @@
   "license": "ISC",
   "devDependencies": {
     "create-react-app": "^4.0.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "swagger-editor": "^3.16.1",
+    "swagger-ui": "^3.48.0",
+    "swagger-ui-dist": "^3.48.0"
   }
 }
