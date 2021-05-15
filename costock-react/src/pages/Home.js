@@ -3,6 +3,7 @@ import { DollarCircleFilled } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Paragraph from "antd/lib/typography/Paragraph";
+import Statistics from "../components/Statistics";
 
 function Home() {
   return (
@@ -39,17 +40,7 @@ function Home() {
           </Paragraph>
         </Card>
       </section>
-
-      <section className="App-statistics">
-        <Card title="Donations">
-          <Statistic value={1128} prefix={"Rs."} suffix={" collected"} />
-          <Statistic value={1128} prefix={"Rs."} suffix={" deployed"} />
-        </Card>
-        <Card title="Concentrators">
-          <Statistic value={93} suffix="concentrators" />
-          <Statistic value={93} suffix="people served" />
-        </Card>
-      </section>
+      <Statistics></Statistics>
     </div>
   );
 }
