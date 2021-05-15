@@ -5,9 +5,31 @@ const { redisKey } = require("../utils");
 const debug = require("debug")("controllers:models");
 
 function modelController(redis) {
-  function listModels(req, res, next) {
-    console.log("list models not implemented");
-    res.json([]);
+  async function listModels(req, res, next) {
+    try {
+      const keys = await redis.call("keys", redisKey(MODEL_PREFIX, "*"));
+      debug("keys fetched:", keys);
+      const commands = keys.map((key) => ["JSON.GET", key]);
+      debug("commands prepared:", commands);
+      const pipeLineCommand = commands.reduce(
+        (pip, cmd) => pip.call(...cmd),
+        redis.pipeline()
+      );
+      const response = await pipeLineCommand.exec();
+      const idList = keys.map((k) => k.slice(MODEL_PREFIX.length + 1));
+      debug("get all response:", response);
+      res.json(
+        response.map((r, idx) => {
+          return {
+            ...JSON.parse(r[1]),
+            id: idList[idx],
+          };
+        })
+      );
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ code: 134, message: "Unknown error" });
+    }
   }
 
   async function addModel(req, res, next) {
