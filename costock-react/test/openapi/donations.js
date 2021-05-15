@@ -1,3 +1,4 @@
+
 const { OpenAPIClientAxios } = require("openapi-client-axios");
 
 const api = new OpenAPIClientAxios({
@@ -10,7 +11,7 @@ describe("APIs", function () {
     it("should create a donation", async function () {
       const client = await api.getClient();
       
-      console.log(client);
+      console.log(client.api.getOperations());
     });
   });
 });
