@@ -1,49 +1,47 @@
 const express = require("express");
-const OpenApiValidator = require('express-openapi-validator')
+const OpenApiValidator = require("express-openapi-validator");
 
-const {connector, summarise} = require('swagger-routes-express')
-const YAML = require('yamljs')
-const api = require('./api/controllers')
+const { connector, summarise } = require("swagger-routes-express");
+const YAML = require("yamljs");
+const api = require("./api/controllers");
 
 const pathToSwaggerUi = require("swagger-ui-dist").absolutePath();
 
-
-const yamlSpecFile = './public/swagger.yaml'
-const apiDefinition = YAML.load(yamlSpecFile)
-const apiSummary = summarise(apiDefinition)
-console.info(apiSummary)
+const yamlSpecFile = "./public/swagger.yaml";
+const apiDefinition = YAML.load(yamlSpecFile);
+const apiSummary = summarise(apiDefinition);
+console.info(apiSummary);
 
 const app = express();
 
 app.use("/swagger-ui", express.static(pathToSwaggerUi));
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 const validatorOptions = {
   coerceTypes: true,
   apiSpec: yamlSpecFile,
   validateRequests: true,
-  validateResponses: true
-}
-app.use(OpenApiValidator.middleware(validatorOptions))
-  
+  validateResponses: true,
+};
+app.use(OpenApiValidator.middleware(validatorOptions));
+
 // error customization, if request is invalid
 app.use((err, req, res, next) => {
   res.status(err.status).json({
     error: {
-      type: 'request_validation',
+      type: "request_validation",
       message: err.message,
-      errors: err.errors
-    }
-  })
-})
+      errors: err.errors,
+    },
+  });
+});
 
 const connect = connector(api, apiDefinition, {
   onCreateRoute: (method, descriptor) => {
-    console.log(`${method}: ${descriptor[0]} : ${(descriptor[1]).name}`)
-  }
-})
+    console.log(`${method}: ${descriptor[0]} : ${descriptor[1].name}`);
+  },
+});
 
-connect(app)
-
+connect(app);
 
 app.listen(3200);
