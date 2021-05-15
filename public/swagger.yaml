@@ -154,11 +154,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Donation'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Donation'
         required: true
       responses:
+        200:
+          description: Donation added
         400:
           description: Invalid ID supplied
           content: {}
@@ -732,7 +731,7 @@ components:
     Donation:
       type: object
       properties:
-        id:
+        payment_id:
           type: string
           format: uuid
         name:
@@ -741,8 +740,10 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
-      xml:
-        name: Donation
+        email:
+          type: string
+        phone:
+          type: string
     User:
       allOf:
       - $ref: '#/components/schemas/UserDetails'
