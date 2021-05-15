@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { NotFound, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -15,13 +16,13 @@ function App() {
         <Header></Header>
         <section className="App-centered-panel">
           <Switch>
-            <Route path="/about">
+            <Route exact path="/about">
               <About />
             </Route>
-            <Route path="/donation">
+            <Route exact path="/donation">
               <Donation />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
             </Route>
           </Switch>

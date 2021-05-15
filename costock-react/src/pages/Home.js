@@ -33,10 +33,10 @@ function Home() {
         <Card bordered={false}>
           <Paragraph>
             We are a community maintained stockpile for oxygen concentrators.
-            Our goal is to make available oxygen concentrators to everyone at
-            this hour of need. We achieve this by placing orders to
-            manufacturers to the maximum extent on their spare capacity. Donors
-            can donate to our capital pool.
+            Our goal is to make oxygen concentrators available to everyone in
+            need. We achieve this by placing orders to manufacturers to the full
+            extent of their spare capacity, stockpiling them, delivering them to
+            needy and calling them back. Donors can donate to our capital pool.
           </Paragraph>
         </Card>
       </section>

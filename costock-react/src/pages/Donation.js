@@ -73,7 +73,7 @@ function Donation() {
   }
 
   return (
-    <div>
+    <div style={{maxWidth: '600px'}}>
       <Title>Donation</Title>
       <Form
         labelCol={{ span: 4 }}
