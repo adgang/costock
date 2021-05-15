@@ -1,21 +1,22 @@
 const express = require("express");
+const { Redis } = require("./src/redis");
 const OpenApiValidator = require("express-openapi-validator");
 
 const { connector, summarise } = require("swagger-routes-express");
 const YAML = require("yamljs");
-const api = require("./api/controllers");
+const redis = new Redis();
+const api = require("./src/controllers")(redis);
 
 const pathToSwaggerUi = require("swagger-ui-dist").absolutePath();
 
 const yamlSpecFile = "./public/swagger.yaml";
 const apiDefinition = YAML.load(yamlSpecFile);
-const apiSummary = summarise(apiDefinition);
-console.info(apiSummary);
 
 const app = express();
 
 app.use("/swagger-ui", express.static(pathToSwaggerUi));
 app.use(express.static("public"));
+app.use(express.json());
 
 const validatorOptions = {
   coerceTypes: true,

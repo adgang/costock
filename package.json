@@ -9,15 +9,20 @@
   "author": "adgang@tuta.io",
   "license": "ISC",
   "devDependencies": {
-    "create-react-app": "^4.0.3"
+    "create-react-app": "^4.0.3",
+    "mocha": "^8.4.0"
   },
   "dependencies": {
+    "bluebird": "^3.7.2",
+    "debug": "^2.6.9",
     "express": "^4.17.1",
     "express-openapi-validator": "^4.12.10",
+    "ioredis": "^4.27.2",
     "swagger-editor": "^3.16.1",
     "swagger-routes-express": "^3.3.0",
     "swagger-ui": "^3.48.0",
     "swagger-ui-dist": "^3.48.0",
+    "uuid": "^8.3.2",
     "yamljs": "^0.3.0"
   }
 }
