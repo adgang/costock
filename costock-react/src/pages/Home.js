@@ -40,7 +40,7 @@ function Home() {
         </Card>
       </section>
 
-      <section class="App-statistics">
+      <section className="App-statistics">
         <Card title="Donations">
           <Statistic value={1128} prefix={"Rs."} suffix={" collected"} />
           <Statistic value={1128} prefix={"Rs."} suffix={" deployed"} />
