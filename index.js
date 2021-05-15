@@ -3,6 +3,8 @@ const OpenApiValidator = require('express-openapi-validator')
 
 const {connector, summarise} = require('swagger-routes-express')
 const YAML = require('yamljs')
+const api = require('./api/controllers')
+
 const pathToSwaggerUi = require("swagger-ui-dist").absolutePath();
 
 
@@ -34,14 +36,6 @@ app.use((err, req, res, next) => {
     }
   })
 })
-
-const api = {
-  listModels: (req, res) => {
-    console.log(req)
-    console.log("bb")
-    res.json({"a": 1})
-  }
-}
 
 const connect = connector(api, apiDefinition, {
   onCreateRoute: (method, descriptor) => {
