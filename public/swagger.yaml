@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.0.0
 info:
   title: O2 Concentrator Stockpile
   description: 'A stockpile service for O2 concentrators'
