@@ -5,10 +5,12 @@ const api = new OpenAPIClientAxios({
 });
 api.init();
 
-describe("donation APIs", function () {
-  describe("#addDonation", function () {
-    it("should create a donation", async function () {
+describe("APIs", function () {
+  describe("#apiClient", function () {
+    it("should get client operations", async function () {
       const client = await api.getClient();
+
+      console.log(client.api.getOperations());
     });
   });
 });

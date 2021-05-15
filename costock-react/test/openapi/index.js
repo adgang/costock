@@ -1,7 +1,5 @@
-require('./donations')
-require('./models')
-require('./devices')
-require('./orders')
-
-
-
+require("./client");
+require("./donations");
+require("./models");
+require("./devices");
+require("./orders");
