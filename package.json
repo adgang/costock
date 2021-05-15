@@ -13,8 +13,11 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "express-openapi-validator": "^4.12.10",
     "swagger-editor": "^3.16.1",
+    "swagger-routes-express": "^3.3.0",
     "swagger-ui": "^3.48.0",
-    "swagger-ui-dist": "^3.48.0"
+    "swagger-ui-dist": "^3.48.0",
+    "yamljs": "^0.3.0"
   }
 }
