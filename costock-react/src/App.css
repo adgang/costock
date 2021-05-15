@@ -54,3 +54,7 @@
   justify-content: center;
   margin: 20px 10px;
 }
+
+.App-centered-panel>* {
+  flex: 1;
+}

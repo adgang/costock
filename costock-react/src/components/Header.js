@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
+import {Typography} from "antd";
+import "./Header.css"
+const { Text, Title } = Typography;
 function Header() {
   return (
     <>
       <header className="App-header">
-        <img src={"o2-rect.png"} className="App-logo" alt="logo" />
+        <Link to="/"><img src={"o2-rect.png"} className="App-logo" alt="logo" /></Link>
         <div class="App-title">
-          <h1>
-            Costock
-          </h1>
-          <h5>
+          <Title keyboard>Costock</Title>
+          <Text keyboard level={5}>
           A Community O<sub>2</sub> Concentrator Stockpile
-          </h5>
+          </Text>
         </div>
       </header>
     </>

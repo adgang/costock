@@ -1,0 +1,43 @@
+.App-statistics {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.App-statistics > * {
+  margin: 10px;
+  max-width: 900px;
+  flex: 1;
+}
+
+.Home-buttons {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.Home-buttons > * {
+  flex: 1;
+}
+
+.Home-donation-button {
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.Home-order-button {
+  margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .App-statistics {
+    flex-direction: column;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (min-width: 900px) {
+  .App-statistics {
+    flex-direction: row;
+  }
+}

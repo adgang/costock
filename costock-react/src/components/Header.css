@@ -1,0 +1,3 @@
+.App-title > h1, .App-title > span {
+  color: var(--costock-teal);
+}
