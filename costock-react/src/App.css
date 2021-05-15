@@ -28,8 +28,9 @@
   color: #61dafb;
 }
 
-.App-title {
+.App-title > h1 {
   margin-left: 40px;
+  color: var(--white);
 }
 
 
