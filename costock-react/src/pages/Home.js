@@ -1,16 +1,17 @@
-import { Button } from "antd";
+import { Button, Tag, PageHeader, Space } from "antd";
 import { Link } from "react-router-dom";
 function Home() {
   return (
-    <>
-      <p>Costock is </p>
-      <Link to="/donation">
-        <Button>I want to donate</Button>
-      </Link>
-      <Link to="/requests">
-        <Button>I want to request a concentrator</Button>
-      </Link>
-    </>
+    <div class="App-home">
+      <Space>
+        <Link to="/donation">
+          <Button>I want to donate</Button>
+        </Link>
+        <Link to="/requests">
+          <Button>I want to request a concentrator</Button>
+        </Link>
+      </Space>
+    </div>
   );
 }
 
