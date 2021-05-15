@@ -21,18 +21,23 @@
   flex-direction: row;
   align-items: center;
   font-size: calc(10px + 1vmin);
-  color: var(--white);
 }
 
 .App-link {
   color: #61dafb;
 }
 
-.App-title > h1 {
+.App-title {
   margin-left: 40px;
-  color: var(--white);
+  display: flex;
+  flex-direction: column;
 }
 
+.App-title > * {
+  text-align: left;
+
+  color: var(--costock-teal);
+}
 
 @keyframes App-logo-spin {
   from {
