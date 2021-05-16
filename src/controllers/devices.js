@@ -15,12 +15,11 @@ const debug = require("debug")("controllers:devices");
 function deviceController(redis) {
   async function getDeviceKeys(location, modelId, status) {
     // return all keys
-    if (!location && !modelId && !status) {
+    if (!location) {
       const keys = await redis.call("keys", redisKey(DEVICE_PREFIX, "*"));
       return keys;
-    }
-    // TODO: validate location format
-    if (location) {
+    } else {
+      // TODO: validate location format
       const parts = location.split(",");
       const [long, lat] = parts;
       const keys = await redis.georadius(
