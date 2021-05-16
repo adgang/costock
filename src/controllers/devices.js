@@ -9,6 +9,7 @@ const {
 } = require("../constants");
 const { v4: uuidv4 } = require("uuid");
 const { redisKey } = require("../utils");
+const { flatten, unflatten } = require("flat");
 
 const debug = require("debug")("controllers:devices");
 
@@ -58,7 +59,7 @@ function deviceController(redis) {
       debug("get response:", response);
       const devices = response.map((r, idx) => {
         return {
-          ...r[1],
+          ...unflatten(r[1]),
           id: idList[idx],
         };
       });
@@ -67,8 +68,8 @@ function deviceController(redis) {
         ? devices
         : devices.filter((d) => d.status == req.query.status);
       const devices_with_model = !req.query.model
-        ? devices
-        : devices.filter((d) => d.model_id == req.query.model);
+        ? devices_with_status
+        : devices_with_status.filter((d) => d.model_id == req.query.model);
       res.json(devices_with_model);
     } catch (err) {
       console.log(err);
@@ -83,24 +84,13 @@ function deviceController(redis) {
 
     try {
       const device = { ...req.body, id: uuid, created_at: time };
+      const redisArgsObj = flatten(device);
+      const redisArgs = Object.entries(redisArgsObj).flat();
+
       // TODO: handle redis errors
-      const response = await redis
+      const redisRes = await redis
         .multi()
-        .hmset(
-          redisKey(DEVICE_PREFIX, uuid),
-          "model_id",
-          req.body.model_id,
-          "model_name",
-          req.body.model_name,
-          "status",
-          req.body.status,
-          "long",
-          req.body.location.long,
-          "lat",
-          req.body.location.lat,
-          "created_at",
-          time
-        )
+        .hmset(redisKey(DEVICE_PREFIX, uuid), ...redisArgs)
         .geoadd(
           DEVICE_BY_LOCATION_INDEX,
           req.body.location.lat,
@@ -124,7 +114,10 @@ function deviceController(redis) {
       );
       debug("redis response:", device);
       if (device.model_id) {
-        const device_with_id = { ...device, id: req.params.deviceId };
+        const device_with_id = {
+          ...unflatten(device),
+          id: req.params.deviceId,
+        };
         res.status(200).json(device_with_id);
       } else {
         res.status(404).end();
