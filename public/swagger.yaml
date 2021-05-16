@@ -313,6 +313,11 @@ paths:
         description: model id of model requested
         schema:
           type: string
+      - name: contact
+        in: query
+        description: contact number of order requester
+        schema:
+          type: string
       responses:
         200:
           description: successful operation
@@ -416,7 +421,7 @@ paths:
         400:
           description: Invalid Order
           content: {}
-      x-codegen-request-body-name: body    
+      x-codegen-request-body-name: body
     delete:
       tags:
       - orders
@@ -695,7 +700,7 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
-        delivery_location:
+        location:
           $ref: '#/components/schemas/Location'
       xml:
         name: OrderRequest

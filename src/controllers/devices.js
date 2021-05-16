@@ -34,7 +34,7 @@ function deviceController(redis) {
       );
       debug("location based keys:", keys);
       // TODO: send distance to response somehow
-      return keys.map((k) => redisKey(DEVICE_PREFIX, k[0]));
+      return keys.map(k => redisKey(DEVICE_PREFIX, k[0]));
     }
     // TODO: Optimize location, model and status queries with heavier indexing
     return [];
@@ -90,7 +90,7 @@ function deviceController(redis) {
       // TODO: handle redis errors
       const redisRes = await redis
         .multi()
-        .hmset(redisKey(DEVICE_PREFIX, uuid), ...redisArgs)
+        .hset(redisKey(DEVICE_PREFIX, uuid), ...redisArgs)
         .geoadd(
           DEVICE_BY_LOCATION_INDEX,
           req.body.location.lat,
