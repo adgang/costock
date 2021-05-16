@@ -9,13 +9,14 @@ const {
 
 function donationController(redis) {
   async function addDonation(req, res, next) {
+    debug("add donation body:", req.body)
     // TODO: validations
     const uuid = uuidv4();
     debug("uuid:" + uuid);
     const time = new Date().getTime();
     try {
       const donation = { ...req.body, uuid, created_at: time };
-      const res = await redis
+      const redres = await redis
         .multi()
         .call(
           "JSON.SET",
@@ -26,11 +27,12 @@ function donationController(redis) {
         .zadd(redisKey(DONATION_BY_EMAIL_PREFIX, req.body.email), time, uuid)
         .zadd(redisKey(DONATION_BY_PHONE_PREFIX, req.body.phone), time, uuid)
         .exec();
-      debug("redis res:", res);
+      debug("redis res:", redres);
+      res.json({id: uuid, ...donation});
     } catch (err) {
       console.log(err);
+      throw err;
     }
-    res.end();
   }
   return { addDonation };
 }

@@ -164,6 +164,13 @@ paths:
       responses:
         200:
           description: Donation added
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Donation'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Donation'
         400:
           description: Invalid ID supplied
           content: {}
@@ -777,9 +784,11 @@ components:
     Donation:
       type: object
       properties:
-        payment_id:
+        id:
           type: string
           format: uuid
+        payment_id:
+          type: string
         name:
           type: string
         tax_id:
