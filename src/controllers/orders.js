@@ -108,6 +108,7 @@ function orderController(redis) {
         const order = unflatten(redisOrder);
         order.id = req.params.orderId;
         order.created_at = parseInt(order.created_at);
+        debug("order:", order);
         res.json(order);
       } else {
         res.status(404).end();
@@ -119,7 +120,58 @@ function orderController(redis) {
   }
 
   async function editOrder(req, res, next) {
-    console.log("edit Order not implemented");
+    try {
+      debug("edit order params", req.params);
+      debug("edit order body", req.body);
+      const order = req.body;
+      if (Object.keys(order).length > 0) {
+        const cmds = [];
+        const args = Object.entries(flatten(order)).flat();
+        cmds.push([
+          "hset",
+          redisKey(ORDER_PREFIX, req.params.orderId),
+          ...args,
+        ]);
+        if (order.location) {
+          cmds.push([
+            "geoadd",
+            ORDERS_BY_LOCATION_INDEX,
+            order.location.long,
+            order.location.lat,
+            req.params.orderId,
+          ]);
+          cmds.push([
+            "geoadd",
+            WAITLISTED_ORDERS_BY_LOCATION_INDEX,
+            order.location.long,
+            order.location.lat,
+            req.params.orderId,
+          ]);
+        }
+        if (order.status !== "waitlisted") {
+          cmds.push(['zrem', WAITLISTED_ORDERS_BY_LOCATION_INDEX, req.params.orderId])
+        }
+        cmds.push(['hgetall', redisKey(ORDER_PREFIX, req.params.orderId)])
+        const redCommand = cmds.reduce(
+          (redCmd, c) => redCmd.call(...c),
+          redis.multi()
+        );
+        const redres = await redCommand.exec();
+        debug("redis response:", redres);
+        const newOrder = unflatten(redres[redres.length-1][1])
+        newOrder.id = req.params.orderId;
+        newOrder.created_at = parseInt(newOrder.created_at)
+        debug("edited order:", newOrder)
+        res.json(newOrder);
+
+      } else {
+        res.status(400).end();
+      }
+
+    } catch (err) {
+      console.log("error in edit order:", err);
+      throw err;
+    }
   }
 
   async function deleteOrder(req, res, next) {
