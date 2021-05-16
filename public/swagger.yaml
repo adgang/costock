@@ -660,12 +660,12 @@ components:
     Device:
       type: object
       allOf:
-      - $ref: '#/components/schemas/DeviceDetails'
       - type: object
         properties:
           id:
             type: string
             format: uuid
+      - $ref: '#/components/schemas/DeviceDetails'
     DeviceDetails:
       type: object
       properties:
@@ -682,12 +682,7 @@ components:
           - under_maintenance
           - available
         location:
-          type: object
-          properties:
-            lat:
-              type: string
-            long:
-              type: string
+          $ref: '#/components/schemas/Location'
       xml:
         name: DeviceDetails
     OrderRequest:
@@ -700,6 +695,8 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
+        delivery_location:
+          $ref: '#/components/schemas/Location'
       xml:
         name: OrderRequest
     Address:
@@ -729,7 +726,6 @@ components:
           type: string
     Order:
       allOf:
-      - $ref: '#/components/schemas/OrderRequest'
       - type: object
         properties:
           id:
@@ -769,6 +765,7 @@ components:
             - return_dispatched
             - completed
             - cancelled
+      - $ref: '#/components/schemas/OrderRequest'
     Donation:
       type: object
       properties:
@@ -793,6 +790,13 @@ components:
           id:
             type: string
             format: uuid
+    Location:
+      type: object
+      properties:
+        lat:
+          type: string
+        long:
+          type: string
     UserDetails:
       type: object
       properties:
