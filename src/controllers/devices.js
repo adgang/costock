@@ -34,7 +34,7 @@ function deviceController(redis) {
       );
       debug("location based keys:", keys);
       // TODO: send distance to response somehow
-      return keys.map(k => redisKey(DEVICE_PREFIX, k[0]));
+      return keys.map((k) => redisKey(DEVICE_PREFIX, k[0]));
     }
     // TODO: Optimize location, model and status queries with heavier indexing
     return [];
@@ -42,7 +42,11 @@ function deviceController(redis) {
   async function listDevices(req, res, next) {
     debug("request params:", req.query);
     try {
-      const keys = await getDeviceKeys(req.query.location, req.query.modelId, req.query.status);
+      const keys = await getDeviceKeys(
+        req.query.location,
+        req.query.model,
+        req.query.status
+      );
       debug("keys fetched:", keys);
       const commands = keys.map((key) => ["hgetall", key]);
       debug("commands prepared:", commands);
@@ -60,8 +64,13 @@ function deviceController(redis) {
         };
       });
       // TODO: Remove this after better indexing
-      const devices_with_status = !req.query.status ? devices : devices.filter(d => d.status == req.query.status)
-      res.json(devices_with_status);
+      const devices_with_status = !req.query.status
+        ? devices
+        : devices.filter((d) => d.status == req.query.status);
+      const devices_with_model = !req.query.model
+        ? devices
+        : devices.filter((d) => d.model_id == req.query.model);
+      res.json(devices_with_model);
     } catch (err) {
       console.log(err);
       res.status(500).json(UNKNOWN_ERROR_RESPONSE);
