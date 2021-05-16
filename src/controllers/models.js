@@ -33,13 +33,14 @@ function modelController(redis) {
   }
 
   async function addModel(req, res, next) {
+    // TODO: prevent duplicate addition
     debug("body: ", JSON.stringify(req.body));
     const uuid = uuidv4();
     debug("uuid:" + uuid);
     const time = new Date().getTime();
     const model = { ...req.body, created_at: time };
     try {
-      const res = await redis
+      const response = await redis
         .multi()
         .call(
           "JSON.SET",
@@ -48,10 +49,10 @@ function modelController(redis) {
           JSON.stringify(model)
         )
         .exec();
+      res.status(200).json({ ...model, id: uuid });
     } catch (err) {
       console.log(err);
     }
-    res.end();
   }
 
   async function getModel(req, res, next) {
