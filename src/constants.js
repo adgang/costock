@@ -7,6 +7,9 @@ const DEVICE_BY_LOCATION_INDEX = "devices_by_location";
 const AVAILABLE_DEVICES_BY_LOCATION_INDEX = "available_devices_by_location";
 const DEVICE_BY_MODEL_PREFIX = "devices_by_model";
 const AVAILABLE_DEVICE_BY_MODEL_PREFIX = "available_devices_by_model";
+const ORDER_PREFIX = "order";
+const ORDERS_BY_LOCATION_INDEX = "orders_by_location";
+const WAITLISTED_ORDERS_BY_LOCATION_INDEX = "waitlisted_orders_by_location";
 const UNKNOWN_ERROR_RESPONSE = { code: 100, message: "Unknown error" };
 const FEASIBLE_DELIVERY_DISTANCE_KM = 100;
 
@@ -22,4 +25,7 @@ module.exports = {
   AVAILABLE_DEVICES_BY_LOCATION_INDEX,
   AVAILABLE_DEVICE_BY_MODEL_PREFIX,
   FEASIBLE_DELIVERY_DISTANCE_KM,
+  ORDER_PREFIX,
+  ORDERS_BY_LOCATION_INDEX,
+  WAITLISTED_ORDERS_BY_LOCATION_INDEX,
 };
