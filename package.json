@@ -17,6 +17,7 @@
     "debug": "^2.6.9",
     "express": "^4.17.1",
     "express-openapi-validator": "^4.12.10",
+    "flat": "^5.0.2",
     "ioredis": "^4.27.2",
     "swagger-editor": "^3.16.1",
     "swagger-routes-express": "^3.3.0",

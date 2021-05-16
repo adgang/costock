@@ -11,7 +11,8 @@ const {
   WAITLISTED_ORDERS_BY_LOCATION_INDEX,
 } = require("../constants");
 const { v4: uuidv4 } = require("uuid");
-const { redisKey, flattenObj } = require("../utils");
+const { redisKey } = require("../utils");
+const { flatten, unflatten } = require("flat");
 
 const debug = require("debug")("controllers:orders");
 
@@ -31,12 +32,12 @@ function orderController(redis) {
       created_at: time,
       status: "waitlisted",
     };
-    const redisArgsObj = flattenObj(order);
+    const redisArgsObj = flatten(order);
     const redisArgs = Object.entries(redisArgsObj).flat();
 
     debug("redis args:", redisArgs);
     try {
-      const redres = redis
+      const redres = await redis
         .multi()
         .hmset(redisKey(ORDER_PREFIX, uuid), ...redisArgs)
         .geoadd(
@@ -65,6 +66,22 @@ function orderController(redis) {
 
   async function getOrder(req, res, next) {
     debug("request params:", req.params);
+    try {
+      const redisOrder = await redis.hgetall(
+        redisKey(ORDER_PREFIX, req.params.orderId)
+      );
+      if (redisOrder.status) {
+        const order =  unflatten(redisOrder);
+        order.id = req.params.orderId;
+        order.created_at = parseInt(order.created_at)
+        res.json(order);
+      } else {
+        res.status(404).end();
+      }
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   }
 
   async function editOrder(req, res, next) {
