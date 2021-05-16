@@ -17,6 +17,7 @@ import {
 import { ApiProvider } from "./components/ApiContext";
 import ThankYou from "./pages/ThankYou";
 import DonationError from "./pages/DonationError";
+import Order from "./pages/Order";
 
 const api = new OpenAPIClientAxios({
   definition: "/swagger.yaml",
@@ -55,8 +56,9 @@ function App() {
               <Route exact path="/donation-error">
                 <DonationError />
               </Route>
-
-
+              <Route exact path="/request">
+                <Order />
+              </Route>
             </Switch>
           </section>
           <Footer></Footer>

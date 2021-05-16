@@ -23,7 +23,7 @@ function Home() {
           </Link>
         </Space>
         <Space className="Home-order-button">
-          <Link to="/requests">
+          <Link to="/request">
             <Button>I want to request a concentrator</Button>
           </Link>
         </Space>

@@ -706,6 +706,9 @@ components:
       properties:
         contact:
           type: string
+        email:
+          type: string
+          required: false
         address:
           $ref: '#/components/schemas/Address'
         location:

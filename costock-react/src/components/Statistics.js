@@ -6,7 +6,7 @@ function Statistics() {
     <section className="App-statistics">
       <Card title="Donations">
         <Statistic value={1128} prefix={"Rs."} suffix={" collected"} />
-        <Statistic value={1128} prefix={"Rs."} suffix={" deployed"} />
+        <Statistic value={1000} prefix={"Rs."} suffix={" deployed"} />
       </Card>
       <Card title="Concentrators">
         <Statistic value={93} suffix="concentrators" />
