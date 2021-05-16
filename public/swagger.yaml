@@ -178,7 +178,7 @@ paths:
     get:
       tags:
       - devices
-      summary: Returns device inventories by status
+      summary: Returns device inventories by status, location and model
       description: Returns a list of devices
       operationId: listDevices
       parameters:
@@ -189,9 +189,16 @@ paths:
           type: string
       - name: model
         in: query
-        description: model id of model requested
+        description: model id of devices requested
         schema:
           type: string
+      - name: status
+        in: query
+        description: status of devices requested
+        schema:
+          type: string
+          enum:
+          - available
       responses:
         200:
           description: successful operation

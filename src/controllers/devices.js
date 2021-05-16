@@ -3,6 +3,9 @@ const {
   UNKNOWN_ERROR_RESPONSE,
   DEVICE_BY_LOCATION_INDEX,
   DEVICE_BY_MODEL_PREFIX,
+  AVAILABLE_DEVICE_BY_MODEL_PREFIX,
+  AVAILABLE_DEVICES_BY_LOCATION_INDEX,
+  FEASIBLE_DELIVERY_DISTANCE_KM,
 } = require("../constants");
 const { v4: uuidv4 } = require("uuid");
 const { redisKey } = require("../utils");
@@ -10,10 +13,36 @@ const { redisKey } = require("../utils");
 const debug = require("debug")("controllers:devices");
 
 function deviceController(redis) {
-  async function listDevices(req, res, next) {
-    debug("request params:", req.params);
-    try {
+  async function getDeviceKeys(location, modelId, status) {
+    // return all keys
+    if (!location && !modelId && !status) {
       const keys = await redis.call("keys", redisKey(DEVICE_PREFIX, "*"));
+      return keys;
+    }
+    // TODO: validate location format
+    if (location) {
+      const parts = location.split(",");
+      const [long, lat] = parts;
+      const keys = await redis.georadius(
+        DEVICE_BY_LOCATION_INDEX,
+        long,
+        lat,
+        FEASIBLE_DELIVERY_DISTANCE_KM,
+        "km",
+        "WITHDIST",
+        "ASC"
+      );
+      debug("location based keys:", keys);
+      // TODO: send distance to response somehow
+      return keys.map(k => redisKey(DEVICE_PREFIX, k[0]));
+    }
+    // TODO: Optimize location, model and status queries with heavier indexing
+    return [];
+  }
+  async function listDevices(req, res, next) {
+    debug("request params:", req.query);
+    try {
+      const keys = await getDeviceKeys(req.query.location, req.query.modelId, req.query.status);
       debug("keys fetched:", keys);
       const commands = keys.map((key) => ["hgetall", key]);
       debug("commands prepared:", commands);
@@ -23,14 +52,16 @@ function deviceController(redis) {
       );
       const response = await pipeLineCommand.exec();
       const idList = keys.map((k) => k.slice(DEVICE_PREFIX.length + 1));
-      debug("get all response:", response);
+      debug("get response:", response);
       const devices = response.map((r, idx) => {
         return {
           ...r[1],
           id: idList[idx],
         };
       });
-      res.json(devices);
+      // TODO: Remove this after better indexing
+      const devices_with_status = !req.query.status ? devices : devices.filter(d => d.status == req.query.status)
+      res.json(devices_with_status);
     } catch (err) {
       console.log(err);
       res.status(500).json(UNKNOWN_ERROR_RESPONSE);
@@ -55,10 +86,10 @@ function deviceController(redis) {
           req.body.model_name,
           "status",
           req.body.status,
-          "lat",
-          req.body.location.lat,
           "long",
           req.body.location.long,
+          "lat",
+          req.body.location.lat,
           "created_at",
           time
         )
@@ -68,7 +99,7 @@ function deviceController(redis) {
           req.body.location.long,
           uuid
         )
-        .sadd(redisKey(DEVICE_BY_MODEL_PREFIX, req.body.model_id), uuid)
+        .sadd(redisKey(DEVICE_BY_MODEL_PREFIX, device.model_id), uuid)
         .exec();
       res.status(200).json(device);
     } catch (err) {

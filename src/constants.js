@@ -4,8 +4,11 @@ const DONATION_PREFIX = "donation";
 const MODEL_PREFIX = "model";
 const DEVICE_PREFIX = "device";
 const DEVICE_BY_LOCATION_INDEX = "devices_by_location";
+const AVAILABLE_DEVICES_BY_LOCATION_INDEX = "available_devices_by_location";
 const DEVICE_BY_MODEL_PREFIX = "devices_by_model";
+const AVAILABLE_DEVICE_BY_MODEL_PREFIX = "available_devices_by_model";
 const UNKNOWN_ERROR_RESPONSE = { code: 100, message: "Unknown error" };
+const FEASIBLE_DELIVERY_DISTANCE_KM = 100;
 
 module.exports = {
   DONATION_BY_EMAIL_PREFIX,
@@ -16,4 +19,7 @@ module.exports = {
   DEVICE_BY_LOCATION_INDEX,
   DEVICE_BY_MODEL_PREFIX,
   UNKNOWN_ERROR_RESPONSE,
+  AVAILABLE_DEVICES_BY_LOCATION_INDEX,
+  AVAILABLE_DEVICE_BY_MODEL_PREFIX,
+  FEASIBLE_DELIVERY_DISTANCE_KM,
 };
