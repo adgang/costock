@@ -347,6 +347,7 @@ paths:
           '*/*':
             schema:
               $ref: '#/components/schemas/OrderRequest'
+              additionalFields: false
         required: true
       responses:
         200:
@@ -731,46 +732,48 @@ components:
           type: string
     Order:
       allOf:
-      - type: object
-        properties:
-          id:
-            type: string
-            format: uuid
-          device_id:
-            type: string
-            format: uuid
-          device_model_name:
-            type: string
-          created_at:
-            type: integer
-            format: int64
-          scheduled_at:
-            type: integer
-            format: int64
-          delivered_at:
-            type: integer
-            format: int64
-          return_scheduled_at:
-            type: integer
-            format: int64
-          completed_at:
-            type: integer
-            format: int64
-          cancelled_at:
-            type: integer
-            format: int64
-          status: 
-            type: string
-            enum: 
-            - waitlisted
-            - scheduled
-            - dispatched
-            - delivered
-            - return_scheduled
-            - return_dispatched
-            - completed
-            - cancelled
+      - $ref: '#/components/schemas/OrderProperties'
       - $ref: '#/components/schemas/OrderRequest'
+    OrderProperties:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        device_id:
+          type: string
+          format: uuid
+        device_model_name:
+          type: string
+        created_at:
+          type: integer
+          format: int64
+        scheduled_at:
+          type: integer
+          format: int64
+        delivered_at:
+          type: integer
+          format: int64
+        return_scheduled_at:
+          type: integer
+          format: int64
+        completed_at:
+          type: integer
+          format: int64
+        cancelled_at:
+          type: integer
+          format: int64
+        status:
+          type: string
+          enum:
+          - waitlisted
+          - scheduled
+          - dispatched
+          - delivered
+          - return_scheduled
+          - return_dispatched
+          - completed
+          - cancelled
     Donation:
       type: object
       properties:

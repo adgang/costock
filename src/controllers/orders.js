@@ -126,12 +126,15 @@ function orderController(redis) {
     debug("delete order params:", req.params);
 
     try {
-      const redres = redis
+      const redres = await redis
         .multi()
-        .rename(
-          redisKey(ORDER_PREFIX, req.params.orderId),
-          redisKey(DELETED_ORDER_PREFIX, req.params.orderId)
-        )
+        // TODO: use this instead of deleting key
+        // File bug report with redis for rename crashing server
+        // .rename(
+        //   redisKey(ORDER_PREFIX, req.params.orderId),
+        //   redisKey(DELETED_ORDER_PREFIX, req.params.orderId)
+        // )
+        .del(redisKey(ORDER_PREFIX, req.params.orderId))
         .zrem(ORDERS_BY_LOCATION_INDEX, req.params.orderId)
         .zrem(WAITLISTED_ORDERS_BY_LOCATION_INDEX, req.params.orderId)
         .exec();
