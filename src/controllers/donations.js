@@ -15,7 +15,7 @@ function donationController(redis) {
     debug("uuid:" + uuid);
     const time = new Date().getTime();
     try {
-      const donation = { ...req.body, uuid, created_at: time };
+      const donation = { ...req.body, created_at: time};
       const redres = await redis
         .multi()
         .call(

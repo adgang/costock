@@ -50,11 +50,15 @@ function Donation() {
     email: "abc@example.com",
     phone: "+911234567890",
     amount: "1234.45",
-  }
+  };
 
   const [name, setName] = useState(mockDetails?.name || "");
-  const [addressLine1, setAddressLine1] = useState(mockDetails?.address.line_1 || "");
-  const [addressLine2, setAddressLine2] = useState(mockDetails?.address.line_2 || "");
+  const [addressLine1, setAddressLine1] = useState(
+    mockDetails?.address.line_1 || ""
+  );
+  const [addressLine2, setAddressLine2] = useState(
+    mockDetails?.address.line_2 || ""
+  );
   const [area, setArea] = useState(mockDetails?.address.area || "");
   const [city, setCity] = useState(mockDetails?.address.city || "");
   const [district, setDistrict] = useState(mockDetails?.address.district || "");
@@ -65,7 +69,6 @@ function Donation() {
   const [paymentID, setPaymentID] = useState(mockDetails?.payment_id || "");
   const [pan, setPAN] = useState(mockDetails?.tax_id || "");
   const [amount, setAmount] = useState(mockDetails?.amount || "");
-
 
   function onValuesChange(changedValues, allValues) {
     console.log(changedValues);
@@ -104,11 +107,20 @@ function Donation() {
     console.log(response.data);
 
     if (response.status == 200) {
-      console.log("Your donation id is:%s, payment ID is:%s ", response.data.id, response.data.payment_id)
-      history.push('/thank-you')
+      console.log(
+        "Your donation id is:%s, payment ID is:%s ",
+        response.data.id,
+        response.data.payment_id
+      );
+      history.push({
+        pathname: "/thank-you",
+        paymentID: response.data.payment_id,
+        donationID: response.data.id,
+        amount: amount,
+      });
     } else {
-      console.log("We encoutnered an error")
-      history.push('/donation-error')
+      console.log("We encoutnered an error");
+      history.push("/donation-error");
     }
     // expect(response.status).to.equal(200)
   }
@@ -175,7 +187,7 @@ function Donation() {
         </Form.Item>
 
         <Form.Item label="City" onChange={(e) => setCity(e.target.value)}>
-          <Input value={city}/>
+          <Input value={city} />
         </Form.Item>
         <Form.Item label="State">
           <Select

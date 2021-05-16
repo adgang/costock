@@ -54,6 +54,7 @@
   flex-direction: row;
   justify-content: center;
   margin: 20px 10px;
+  min-height: 50vh;
 }
 
 .App-centered-panel>* {
