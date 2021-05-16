@@ -11,8 +11,30 @@ const debug = require("debug")("controllers:devices");
 
 function deviceController(redis) {
   async function listDevices(req, res, next) {
-    console.log("list Devices not implemented");
-    res.json([]);
+    debug("request params:", req.params);
+    try {
+      const keys = await redis.call("keys", redisKey(DEVICE_PREFIX, "*"));
+      debug("keys fetched:", keys);
+      const commands = keys.map((key) => ["hgetall", key]);
+      debug("commands prepared:", commands);
+      const pipeLineCommand = commands.reduce(
+        (pip, cmd) => pip.call(...cmd),
+        redis.pipeline()
+      );
+      const response = await pipeLineCommand.exec();
+      const idList = keys.map((k) => k.slice(DEVICE_PREFIX.length + 1));
+      debug("get all response:", response);
+      const devices = response.map((r, idx) => {
+        return {
+          ...r[1],
+          id: idList[idx],
+        };
+      });
+      res.json(devices);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(UNKNOWN_ERROR_RESPONSE);
+    }
   }
 
   async function addDevice(req, res, next) {
@@ -22,6 +44,7 @@ function deviceController(redis) {
 
     try {
       const device = { ...req.body, id: uuid, created_at: time };
+      // TODO: handle redis errors
       const response = await redis
         .multi()
         .hmset(

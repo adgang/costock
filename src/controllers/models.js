@@ -1,4 +1,4 @@
-const { MODEL_PREFIX } = require("../constants");
+const { MODEL_PREFIX, UNKNOWN_ERROR_RESPONSE } = require("../constants");
 const { v4: uuidv4 } = require("uuid");
 const { redisKey } = require("../utils");
 
@@ -28,7 +28,7 @@ function modelController(redis) {
       );
     } catch (err) {
       console.log(err);
-      res.status(500).json({ code: 134, message: "Unknown error" });
+      res.status(500).json(UNKNOWN_ERROR_RESPONSE);
     }
   }
 
@@ -68,7 +68,7 @@ function modelController(redis) {
       console.log(err);
       res
         .status(500)
-        .send({ code: 123, message: "something wrong with server" });
+        .send(UNKNOWN_ERROR_RESPONSE);
     }
   }
 
