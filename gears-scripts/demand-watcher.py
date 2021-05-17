@@ -49,4 +49,11 @@ def assign_available_device(order_key, order):
 
 
 gb.foreach(lambda x: assign_available_device(x['key'], x['value']))
-gb.run()
+
+## For demo purpose use the below line:
+## gb.run()
+
+## For prod purposes when you want automatic assignment of devices to orders,
+## use the below line:
+gb.register()
+

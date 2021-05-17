@@ -42,12 +42,15 @@ docker exec -it redismod redis-cli
 1. Run `npm install` and `npm start` in this folder(where README is). 
 2. Go to the costock-react folder in a different terminal. Run `npm install` and `npm start` and that folder as well.
 
+# Running/Registering RedisGears Function
+
+We auto-assign available devices to waitlisted orders through redisgears function(`gears-scripts/demand-watcher.py`). We tested the execution and registration of the function using RedisInsight which makes it easily to copy paste the script content and create execution.
 
 # Improvements
 
-flatten models hashset
-flatten donations into hashset
-
+1. Using timeseries to store device stats like oxygen levels and use it to replace devices or maintain them on their losing efficacy.
+2. Implementing a supply watcher script in gears to allocate devices on device addition when waitlisted orders are already present.
+3. Using RedisSearch instead of geopos/hset based indexes for devices.
 
 # TODOs
 
@@ -57,6 +60,8 @@ flatten donations into hashset
 4. write unknown error handler. don't leak server error messages in response.
 5. check ramifications of javascript int time treatment
 6. redis command return value handling
+7. flatten models hashset
+8. flatten donations into hashset
 
 
 
