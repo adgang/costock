@@ -64,7 +64,7 @@ function App() {
               <Route exact path="/order-status">
                 <OrderStatus />
               </Route>
-              <Route path="/orders/:id" children={<OrderStatus />}>
+              <Route exact path="/orders/:id" children={<OrderStatus />}>
               </Route>
 
               <Route exact path="/request-error">

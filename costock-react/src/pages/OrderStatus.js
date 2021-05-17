@@ -3,10 +3,11 @@ import { useLocation } from "react-router";
 
 function OrderStatus(props) {
   const order = useLocation().order;
-  console.log(useLocation())
+  console.log(useLocation());
   console.log("order:", order);
   const location = order.location;
   const destination = location.lat + "," + location.long;
+  // Show distance from office location if device is not assigned yet
   const officeLocation = {
     lat: "19.528389183694434",
     long: "72.91910525185355",

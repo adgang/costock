@@ -167,7 +167,7 @@ function Order() {
   }
 
   return (
-    <section>
+    <section style={{ maxWidth: "600px" }}>
       <Title level={2}>
         O<sub>2</sub> Concentrator Request
       </Title>

@@ -5,13 +5,13 @@ import "./Footer.css";
 function Footer() {
   return (
     <footer className="Footer">
-      <Space>
-        <Link to="/">Home</Link>
-        <Link to="/donation">Donation</Link>
-        <Link to="/orders">Orders</Link>
-        <a href="/swagger-ui/?url=/swagger.yaml#/donations/addDonation">APIs</a>
-        <Link to="/about">About Us</Link>
-      </Space>
+      <Link to="/">Home</Link>
+      <Link to="/donation">Donate</Link>
+      <Link to="/request">Request Concentrator</Link>
+      <Link to="/orders">Manage</Link>
+
+      <Link href="/swagger-ui/?url=/swagger.yaml#/donations/addDonation">APIs</Link>
+      <Link to="/about">About Us</Link>
     </footer>
   );
 }
