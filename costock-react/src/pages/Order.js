@@ -119,9 +119,7 @@ function Order() {
     if (response.status == 200) {
       console.log("Your request order id is:%s", response.data.id);
       history.push({
-        pathname: "/order-status",
-        orderID: response.data.id,
-        order: response.data,
+        pathname: "/orders/" + response.data.id,
       });
     } else {
       console.log("We encoutnered an error");

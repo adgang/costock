@@ -3,6 +3,7 @@ import { useLocation } from "react-router";
 
 function OrderStatus(props) {
   const order = useLocation().order;
+  console.log(useLocation())
   console.log("order:", order);
   const location = order.location;
   const destination = location.lat + "," + location.long;
