@@ -34,7 +34,7 @@ function deviceController(redis) {
       );
       debug("location based keys:", keys);
       // TODO: send distance to response somehow
-      return keys.map(k => redisKey(DEVICE_PREFIX, k[0]));
+      return keys.map((k) => redisKey(DEVICE_PREFIX, k[0]));
     }
     // TODO: Optimize location, model and status queries with heavier indexing
     return [];
@@ -61,6 +61,8 @@ function deviceController(redis) {
         return {
           ...unflatten(r[1]),
           id: idList[idx],
+          created_at: parseInt(r[1].created_at),
+          assigned_at: parseInt(r[1].assigned_at),
         };
       });
       // TODO: Remove this after better indexing
@@ -129,7 +131,47 @@ function deviceController(redis) {
   }
 
   async function editDevice(req, res, next) {
-    console.log("edit Device not implemented");
+    try {
+      debug("edit device params:", req.params);
+      debug("edit device body:", req.body);
+      const device = req.body;
+      if (Object.keys(device).length > 0) {
+        const cmds = [];
+        const args = Object.entries(flatten(device)).flat();
+        // TODO: disallow changing of model
+        cmds.push([
+          "hset",
+          redisKey(DEVICE_PREFIX, req.params.deviceId),
+          ...args,
+        ]);
+        if (device.location) {
+          cmds.push([
+            "geoadd",
+            DEVICE_BY_LOCATION_INDEX,
+            device.location.long,
+            device.location.lat,
+            req.params.deviceId,
+          ]);
+        }
+        cmds.push(["hgetall", redisKey(DEVICE_PREFIX, req.params.deviceId)]);
+        const redCommand = cmds.reduce(
+          (redCmd, c) => redCmd.call(...c),
+          redis.multi()
+        );
+        const redres = await redCommand.exec();
+        debug("redis response:", redres);
+        const newDevice = unflatten(redres[redres.length - 1][1]);
+        newDevice.id = req.params.deviceId;
+        newDevice.created_at = parseInt(newDevice.created_at);
+        debug("edited device:", newDevice);
+        res.json(newDevice);
+      } else {
+        res.status(400).end();
+      }
+    } catch (err) {
+      console.log("error in edit order:", err);
+      throw err;
+    }
   }
 
   return { listDevices, addDevice, getDevice, editDevice };

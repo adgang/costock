@@ -759,7 +759,7 @@ components:
         created_at:
           type: integer
           format: int64
-        scheduled_at:
+        assigned_at:
           type: integer
           format: int64
         delivered_at:

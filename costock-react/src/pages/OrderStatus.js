@@ -88,7 +88,7 @@ function OrderStatus(props) {
         </Descriptions>
         {
           // Uncomment code after done
-          /* <iframe
+          <iframe
           width="450"
           height="250"
           frameborder="0"
@@ -98,7 +98,7 @@ function OrderStatus(props) {
             queryString(order)
           }
           allowfullscreen
-        ></iframe> */
+        ></iframe>
         }
       </>
     );

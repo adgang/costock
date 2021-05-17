@@ -46,6 +46,7 @@ function orderController(redis) {
           ...unflatten(r[1]),
           id: idList[idx],
           created_at: parseInt(r[1].created_at),
+          assigned_at: parseInt(r[1].assigned_at),
         };
       });
 
@@ -108,6 +109,7 @@ function orderController(redis) {
         const order = unflatten(redisOrder);
         order.id = req.params.orderId;
         order.created_at = parseInt(order.created_at);
+        order.assigned_at = parseInt(order.assigned_at);
         debug("order:", order);
         res.json(order);
       } else {
@@ -161,6 +163,7 @@ function orderController(redis) {
         const newOrder = unflatten(redres[redres.length-1][1])
         newOrder.id = req.params.orderId;
         newOrder.created_at = parseInt(newOrder.created_at)
+        newOrder.assigned_at = parseInt(newOrder.assigned_at)
         debug("edited order:", newOrder)
         res.json(newOrder);
 
