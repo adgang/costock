@@ -37,8 +37,10 @@ Running redis-cli
 docker exec -it redismod redis-cli
 ```
 
-telegraf  --config ./telegraf.conf  --debug
+# Running App
 
+1. Run `npm install` and `npm start` in this folder(where README is). 
+2. Go to the costock-react folder in a different terminal. Run `npm install` and `npm start` and that folder as well.
 
 
 # Improvements
