@@ -119,8 +119,9 @@ function Order() {
     if (response.status == 200) {
       console.log("Your request order id is:%s", response.data.id);
       history.push({
-        pathname: "/order-track",
+        pathname: "/order-status",
         orderID: response.data.id,
+        order: response.data,
       });
     } else {
       console.log("We encoutnered an error");
@@ -239,7 +240,7 @@ function Order() {
         <Form.Item label="Phone" onChange={(e) => setPhone(e.target.value)}>
           <Input value={phone} />
         </Form.Item>
-{/* 
+        {/* 
         <Form.Item label="Email" onChange={(e) => setEmail(e.target.value)}>
           <Input value={email} />
         </Form.Item> */}
