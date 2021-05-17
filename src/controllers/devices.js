@@ -93,8 +93,8 @@ function deviceController(redis) {
         .hset(redisKey(DEVICE_PREFIX, uuid), ...redisArgs)
         .geoadd(
           DEVICE_BY_LOCATION_INDEX,
-          req.body.location.lat,
           req.body.location.long,
+          req.body.location.lat,
           uuid
         )
         .sadd(redisKey(DEVICE_BY_MODEL_PREFIX, device.model_id), uuid)
