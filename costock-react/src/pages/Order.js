@@ -120,6 +120,7 @@ function Order() {
       console.log("Your request order id is:%s", response.data.id);
       history.push({
         pathname: "/orders/" + response.data.id,
+        order: response.data,
       });
     } else {
       console.log("We encoutnered an error");

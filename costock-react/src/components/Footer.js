@@ -10,7 +10,9 @@ function Footer() {
       <Link to="/request">Request Concentrator</Link>
       <Link to="/orders">Manage</Link>
 
-      <Link href="/swagger-ui/?url=/swagger.yaml#/donations/addDonation">APIs</Link>
+      <Link href="/swagger-ui/?url=/swagger.yaml#/donations/addDonation">
+        APIs
+      </Link>
       <Link to="/about">About Us</Link>
     </footer>
   );
