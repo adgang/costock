@@ -1,0 +1,1347 @@
+{
+	"info": {
+		"_postman_id": "94170a99-8f3c-41be-b76d-b370b7dde90a",
+		"name": "Costock",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Donations",
+			"item": [
+				{
+					"name": "AddDonation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Alice Wonder\",\n    \"tax_id\": \"Blah\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Mumbai\",\n        \"district\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"email\": \"abc@example.com\",\n    \"phone\": \"+911234567890\",\n    \"amount\": \"1234.45\",\n    \"payment_id\": \"razorpay_12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/donations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"donations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Alice Wonder\",\n    \"tax_id\": \"Blah\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Mumbai\",\n        \"district\": \"Mumbai\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"email\": \"abc@example.com\",\n    \"phone\": \"+911234567890\",\n    \"amount\": \"1234.45\",\n    \"payment_id\": \"razorpay_12345\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/donations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"donations"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 19:08:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Models",
+			"item": [
+				{
+					"name": "Add Model",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Onyx 10 litre\",\n    \"make\": \"Onyx Laboratories\",\n    \"country_of_origin\": \"South Korea\",\n    \"specs\": {\n        \"type\": \"Chemical Scrubber\",\n        \"weight\": \"10kg\",\n        \"height\": \"1m\",\n        \"capacity\": \"10l\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/models",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"models"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/models/4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"models",
+								"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Models",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/models/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"models",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/models/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"models",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1206"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b6-NIvfdnebc0QAxRN9e7AGSqiOn8g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:23:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Onyx 10 litre\",\n        \"make\": \"Onyx Laboratories\",\n        \"country_of_origin\": \"South Korea\",\n        \"specs\": {\n            \"type\": \"Chemical Scrubber\",\n            \"weight\": \"10kg\",\n            \"height\": \"1m\",\n            \"capacity\": \"10l\"\n        },\n        \"created_at\": 1621123954453,\n        \"id\": \"302e4a18-523b-43f2-ba33-96280915f7eb\"\n    },\n    {\n        \"name\": \"Onyx 10 litre\",\n        \"make\": \"Onyx Laboratories\",\n        \"country_of_origin\": \"South Korea\",\n        \"specs\": {\n            \"type\": \"Chemical Scrubber\",\n            \"weight\": \"10kg\",\n            \"height\": \"1m\",\n            \"capacity\": \"10l\"\n        },\n        \"created_at\": 1621124023815,\n        \"id\": \"e47a16de-80ab-41ff-819a-359807d338d9\"\n    },\n    {\n        \"name\": \"Onyx 10 litre\",\n        \"make\": \"Onyx Laboratories\",\n        \"country_of_origin\": \"South Korea\",\n        \"specs\": {\n            \"type\": \"Chemical Scrubber\",\n            \"weight\": \"10kg\",\n            \"height\": \"1m\",\n            \"capacity\": \"10l\"\n        },\n        \"created_at\": 1621124086128,\n        \"id\": \"ab553a11-0d66-4926-8e0b-e2c07bbb3a4e\"\n    },\n    {\n        \"name\": \"Onyx 10 litre\",\n        \"make\": \"Onyx Laboratories\",\n        \"country_of_origin\": \"South Korea\",\n        \"specs\": {\n            \"type\": \"Chemical Scrubber\",\n            \"weight\": \"10kg\",\n            \"height\": \"1m\",\n            \"capacity\": \"10l\"\n        },\n        \"created_at\": 1621118662841,\n        \"id\": \"e26250c0-b917-4f45-b4d2-2df428ddadba\"\n    },\n    {\n        \"name\": \"Onyx 10 litre\",\n        \"make\": \"Onyx Laboratories\",\n        \"country_of_origin\": \"South Korea\",\n        \"specs\": {\n            \"type\": \"Chemical Scrubber\",\n            \"weight\": \"10kg\",\n            \"height\": \"1m\",\n            \"capacity\": \"10l\"\n        },\n        \"created_at\": 1621116510860,\n        \"id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\"\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Devices",
+			"item": [
+				{
+					"name": "Add Device",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/devices",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"devices"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "213"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d5-J/Jx7FgFY0bmBU2LU0cFKVFhdKY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:15:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    },\n    \"id\": \"44429023-e6e6-4095-b1d6-12760e6c7171\",\n    \"created_at\": 1621178116061\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Device",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/devices/44429023-e6e6-4095-b1d6-12760e6c7171",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"devices",
+								"44429023-e6e6-4095-b1d6-12760e6c7171"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices/cfb34555-3f7c-4309-a5fb-2b69890e8b1d",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices",
+										"cfb34555-3f7c-4309-a5fb-2b69890e8b1d"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:03:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices/44429023-e6e6-4095-b1d6-12760e6c7171",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices",
+										"44429023-e6e6-4095-b1d6-12760e6c7171"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d7-C6E4Hs+y7FwDAjTeTvMTQUVSkos\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:16:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    },\n    \"id\": \"44429023-e6e6-4095-b1d6-12760e6c7171\",\n    \"created_at\": \"1621178116061\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Devices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/devices?&model=4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"devices"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "model",
+									"value": "4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 Loc Aval Model",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices/?location=60.67%2C23.56&status=available&model=e26250c0-b917-4f45-b4d2-2df428ddadba",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices",
+										""
+									],
+									"query": [
+										{
+											"key": "location",
+											"value": "60.67%2C23.56"
+										},
+										{
+											"key": "status",
+											"value": "available"
+										},
+										{
+											"key": "model",
+											"value": "e26250c0-b917-4f45-b4d2-2df428ddadba"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 01:20:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						},
+						{
+							"name": "200 ByLocation",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices/?location=60.67%2C23.56",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices",
+										""
+									],
+									"query": [
+										{
+											"key": "location",
+											"value": "60.67%2C23.56"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "758"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f6-8+z+yymmRuExKJrRnYf7Bk95PWs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:03:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"acquired\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"created_at\": \"1621127773624\",\n        \"id\": \"2bd82087-7023-4c3e-bc7f-8b410e542b4a\"\n    },\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"id\": \"b2efbf5f-3334-4e62-9a33-e2d3b8f2399f\"\n    },\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"created_at\": \"1621124097096\",\n        \"id\": \"cfb34555-3f7c-4309-a5fb-2b69890e8b1c\"\n    },\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"id\": \"f92d8a05-9d5d-4bd0-a4db-2474070e4bfc\"\n    }\n]"
+						},
+						{
+							"name": "200 ByLocationStatus",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"0\",\n        \"long\": \"0\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices/?location=60.67%2C23.56&status=available",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices",
+										""
+									],
+									"query": [
+										{
+											"key": "location",
+											"value": "60.67%2C23.56"
+										},
+										{
+											"key": "status",
+											"value": "available"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "555"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22b-PVUKm8g/s5tqgD7g1srxXxUIyTA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:05:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"id\": \"b2efbf5f-3334-4e62-9a33-e2d3b8f2399f\"\n    },\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"created_at\": \"1621124097096\",\n        \"id\": \"cfb34555-3f7c-4309-a5fb-2b69890e8b1c\"\n    },\n    {\n        \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n        \"model_name\": \"Onyx 10 litre\",\n        \"status\": \"available\",\n        \"lat\": \"60.78\",\n        \"long\": \"23.78\",\n        \"id\": \"f92d8a05-9d5d-4bd0-a4db-2474070e4bfc\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Edit Device",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"available\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/devices/932ea1c3-e48d-4dfc-aa33-8aad6c0a83a4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"devices",
+								"932ea1c3-e48d-4dfc-aa33-8aad6c0a83a4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/devices",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"devices"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "213"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d5-J/Jx7FgFY0bmBU2LU0cFKVFhdKY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:15:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"model_id\": \"4b8d8d8a-b1c7-4979-8f5f-43be3d6db4a4\",\n    \"model_name\": \"Onyx 10 litre\",\n    \"status\": \"acquired\",\n    \"location\": {\n        \"lat\": \"19.78\",\n        \"long\": \"72.60\"\n    },\n    \"id\": \"44429023-e6e6-4095-b1d6-12760e6c7171\",\n    \"created_at\": 1621178116061\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Add Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": \"+911234567890\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Amravati\",\n        \"district\": \"Amravati\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"location\": {\n        \"lat\": \"29.08\",\n        \"long\": \"75.88\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contact\": \"+911234567890\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Amravati\",\n        \"district\": \"Amravati\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"delivery_location\": {\n        \"lat\": \"29.08\",\n        \"long\": \"75.88\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/orders",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-vDo874E7Aa8dC963CmOxzabzdDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 14:49:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"contact\": \"+911234567890\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Amravati\",\n        \"district\": \"Amravati\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"location\": {\n        \"lat\": \"29.08\",\n        \"long\": \"75.88\"\n    },\n    \"created_at\": 1621176552180,\n    \"status\": \"waitlisted\",\n    \"id\": \"78c17814-265c-45a0-88a3-16a40e96accb\"\n}"
+						}
+					]
+				},
+				{
+					"name": "editOrder",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contact\": \"+91123456789\",\n    \"address\": {\n        \"line_1\": \"#234 Windsore\",\n        \"line_2\": \"Goregaon\",\n        \"area\": \"Powaii\",\n        \"city\": \"Amraati\",\n        \"district\": \"Amrati\",\n        \"state\": \"Mahashtra\",\n        \"pincode\": \"400801\"\n    },\n    \"location\": {\n        \"lat\": \"30.08\",\n        \"long\": \"85.88\"\n    },\n    \"status\": \"delivered\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/70b7cb78-5587-489c-8e4f-3d176254710e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"70b7cb78-5587-489c-8e4f-3d176254710e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contact\": \"+91123456789\",\n    \"address\": {\n        \"line_1\": \"#234 Windsore\",\n        \"line_2\": \"Goregaon\",\n        \"area\": \"Powaii\",\n        \"city\": \"Amraati\",\n        \"district\": \"Amrati\",\n        \"state\": \"Mahashtra\",\n        \"pincode\": \"400801\"\n    },\n    \"location\": {\n        \"lat\": \"30.08\",\n        \"long\": \"85.88\"\n    },\n    \"status\": \"delivered\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/70b7cb78-5587-489c-8e4f-3d176254710e",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"70b7cb78-5587-489c-8e4f-3d176254710e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "309"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"135-GvosOljOjRHVzpzyH0w5DSOI8g0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 18:46:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"contact\": \"+91123456789\",\n    \"address\": {\n        \"line_1\": \"#234 Windsore\",\n        \"line_2\": \"Goregaon\",\n        \"area\": \"Powaii\",\n        \"city\": \"Amraati\",\n        \"district\": \"Amrati\",\n        \"state\": \"Mahashtra\",\n        \"pincode\": \"400801\"\n    },\n    \"location\": {\n        \"lat\": \"30.08\",\n        \"long\": \"85.88\"\n    },\n    \"created_at\": 1621190386917,\n    \"status\": \"delivered\",\n    \"id\": \"70b7cb78-5587-489c-8e4f-3d176254710e\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/78c17814-265c-45a0-88a3-16a40e96accb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"78c17814-265c-45a0-88a3-16a40e96accb"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/78c17814-265c-45a0-88a3-16a40e96accx",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"78c17814-265c-45a0-88a3-16a40e96accx"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:01:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/78c17814-265c-45a0-88a3-16a40e96accb",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"78c17814-265c-45a0-88a3-16a40e96accb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-vDo874E7Aa8dC963CmOxzabzdDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:01:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"contact\": \"+911234567890\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Amravati\",\n        \"district\": \"Amravati\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"delivery_location\": {\n        \"lat\": \"29.08\",\n        \"long\": \"75.88\"\n    },\n    \"created_at\": 1621176552180,\n    \"status\": \"waitlisted\",\n    \"id\": \"78c17814-265c-45a0-88a3-16a40e96accb\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 empty",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:24:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Delete Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/15f36927-5851-4b7e-b72b-11b04f4764e4",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"15f36927-5851-4b7e-b72b-11b04f4764e4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/78c17814-265c-45a0-88a3-16a40e96accx",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"78c17814-265c-45a0-88a3-16a40e96accx"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:01:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/78c17814-265c-45a0-88a3-16a40e96accb",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"78c17814-265c-45a0-88a3-16a40e96accb"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "326"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"146-vDo874E7Aa8dC963CmOxzabzdDw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 15:01:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"contact\": \"+911234567890\",\n    \"address\": {\n        \"line_1\": \"#234 Windsor\",\n        \"line_2\": \"Hiranandani\",\n        \"area\": \"Powai\",\n        \"city\": \"Amravati\",\n        \"district\": \"Amravati\",\n        \"state\": \"Maharashtra\",\n        \"pincode\": \"400001\"\n    },\n    \"delivery_location\": {\n        \"lat\": \"29.08\",\n        \"long\": \"75.88\"\n    },\n    \"created_at\": 1621176552180,\n    \"status\": \"waitlisted\",\n    \"id\": \"78c17814-265c-45a0-88a3-16a40e96accb\"\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/orders/3f193f45-4e29-43fa-8388-0fb0092dc5d2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"orders",
+										"3f193f45-4e29-43fa-8388-0fb0092dc5d2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 16 May 2021 17:36:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	]
+}
